@@ -1,7 +1,13 @@
+:root {
+    --color-primary:hsl(16, 100%, 50%);
+    --color-primary-light:hsl(16,100%,40%);
+}
+
 html {
     box-sizing: border-box;
     background-color: black;
-    color: orangered;
+    color: var(--color-primary);
+    font-family: 'Josefin Sans',sans-serif;
 }
 
 *,
@@ -17,37 +23,70 @@ body{
 img {
     max-width: 100%;
 }
-h1{
+
+ /* Type Hierarchy */
+
+h1 {
+    font-size: 2.488rem;
     text-align: center;
-    margin: 0;
+    margin: 1rem;
     color: black;
 }
+
+h2 {
+    font-size: 2.074rem;
+}
+
+h3 {
+    font-size: 1.728rem;
+}
+
+h4 {
+    font-size: 1.44rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+}
+
 /* Player Area */
 header {
     padding: 0.5rem;
     height: 17rem;
     margin: 0 auto;
-    background-color:rgb(235, 133, 133);
+    background-color:var(--color-primary-light);
+}
+
+.container {
+    padding: 0 1rem;
+    width: min(100%,40em);
+    text-align: center;
+    margin: 0 auto;
 }
 
 .player-area {
-    padding: 0.5rem;
-    margin: -13rem auto 0;
-    width: min(100%,40rem);
-    text-align: center;
+    margin: -11rem auto 0;
+}
+
+.img-wrapper {
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 10%;
+    width: 15rem;
+    height: 15rem;
 }
 
 .audio-animation {
     height: 3rem;
     background-color: white;
-    padding: 1rem;
-    margin: 1.5rem;
+    padding: 1rem 0;
+    margin: 1.5rem auto;
 }
 
 .progress-bar {
     width: 100%;
     height: 0.5rem;
-    background-color: red;
+    background-color: var(--color-primary);
     position: relative;
 }
 
@@ -64,6 +103,7 @@ position: absolute;
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
+    font-size: 1.1rem;
 }
 
 .controls {
@@ -86,13 +126,77 @@ position: absolute;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 5px;
-    box-shadow: 4px 4px 4px orangered;
-    border: 0.125em orangered solid;
+    box-shadow: 4px 4px 4px var(--color-primary);
+    border: 0.125em var(--color-primary) solid;
     background-color: black;
+}
+/* Playlist Area */
+.unstyled-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.playlist-item {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    font-size: 1.1rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-top: 0.025em solid var(--color-primary);
+}
+
+.unstyled-list li:last-child {
+    border-bottom: 0.025em solid var(--color-primary);
+}
+
+.playlist-item .thumbnail {
+    width: 3rem;
+    height: 3rem;
+}
+
+.detail {
+    margin: 0.25rem;
+    text-align: left;
 }
 
 /* Tablet View */
 @media only screen and (min-width:40em) {
+    /* Type Hierarchy */
+    h1 {
+        font-size: 3.052rem;
+    }
+    
+    h2 {
+        font-size: 2.441rem;
+    }
+    
+    h3 {
+        font-size: 1.953rem;
+    }
+    
+    h4 {
+        font-size: 1.563rem;
+    }
+    
+    h5 {
+        font-size: 1.25rem;
+    }
+
+    .timer {
+        font-size: 1.2rem;
+    }
+
+    .playlist-item {
+        font-size: 1.2rem;
+        gap: 1.5rem;
+    }
+
+    .img-wrapper {
+        width: 20rem;
+        height: 20rem;
+    }
     .controls {
         gap: 1.5rem;
     }
@@ -100,8 +204,32 @@ position: absolute;
     .material-icons.md-36 {
         font-size: 36px;
     }
+
     .buttons {
         width: 3.5rem;
         height: 3.5rem;
+    }
+}
+
+/* Laptop view */
+
+@media only screen and (min-width:65em) {
+    main {
+        display: flex;
+        gap: 2rem;
+    }
+    h2 {
+        margin-top: 0;
+    }
+    header {
+        height: inherit;
+    }
+    .player-area {
+        margin-top: 0;
+    }
+    .container-outer {
+        width:min(100%,90em);
+        margin: 0 auto;
+        padding: 3rem 1rem;
     }
 }
