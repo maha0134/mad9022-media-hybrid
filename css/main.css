@@ -30,13 +30,14 @@ img {
 h1 {
     font-size: 2.488rem;
     text-align: center;
-    margin: 1rem;
+    margin: 1rem 0 2rem;
     color: black;
     text-shadow: 1px 1px 1px var(--color-text-shadow);
 }
 
 h2 {
     font-size: 2.074rem;
+    margin: 2rem auto;
 }
 
 h3 {
@@ -85,7 +86,7 @@ header {
     background-color: white;
     padding: 1rem 0;
     font-size: 1.3rem;
-    margin: 1.5rem auto;
+    margin: 2rem auto;
 }
 
 .progress-bar {
@@ -107,8 +108,8 @@ position: absolute;
 .timer {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 0;
-    font-size: 1.1rem;
+    padding: 2rem 0;
+    font-size: 1.5rem;
 }
 
 .controls {
@@ -147,7 +148,7 @@ position: absolute;
     display: flex;
     gap: 1rem;
     flex-wrap: nowrap;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     align-items: center;
     padding: 0.5rem;
     border-top: 0.025em solid var(--color-primary);
@@ -174,6 +175,7 @@ position: absolute;
     /* Type Hierarchy */
     h1 {
         font-size: 3.052rem;
+        margin-top: 1.5rem;
     }
     
     h2 {
@@ -192,15 +194,24 @@ position: absolute;
         font-size: 1.25rem;
     }
 
+    .player-area {
+        margin-top: -10rem;
+    }
+
     .timer {
         font-size: 1.5rem;
     }
     .audio-animation {
         font-size: 2rem;
+        margin: 2rem auto;
     }
     .playlist-item {
         font-size: 2rem;
         gap: 1.5rem;
+    }
+    .playlist-item.active {
+        background-color: orangered;
+        color: black;
     }
 
     .playlist-item .thumbnail {
@@ -248,13 +259,11 @@ position: absolute;
     .img-wrapper img {
         box-shadow:none;
     }
-    .audio-animation {
-        margin: 2rem auto;
-    }
+    
     .container-outer {
         width:min(100%,90em);
         margin: 0 auto;
-        padding: 3rem 1rem;
+        padding: 2rem 1rem;
     }
 
     .unstyled-list li:last-child {
