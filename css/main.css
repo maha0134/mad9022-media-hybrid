@@ -154,6 +154,11 @@ position: absolute;
     border-top: 0.025em solid var(--color-primary);
 }
 
+.playlist-item.active {
+    background-color: orangered;
+    color: black;
+}
+
 .unstyled-list li:last-child {
     border-bottom: 0.025em solid var(--color-primary);
     margin-bottom: 2rem;
@@ -208,10 +213,6 @@ position: absolute;
     .playlist-item {
         font-size: 2rem;
         gap: 1.5rem;
-    }
-    .playlist-item.active {
-        background-color: orangered;
-        color: black;
     }
 
     .playlist-item .thumbnail {
