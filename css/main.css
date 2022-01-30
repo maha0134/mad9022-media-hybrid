@@ -118,6 +118,7 @@ position: absolute;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content:center;
+    position: relative;
 }
 
 /* Material Icons */
@@ -136,6 +137,12 @@ position: absolute;
     border: 0.125em var(--color-primary) solid;
     background-color: black;
 }
+
+.buttons.hidden {
+    opacity: 0;
+    position: absolute;
+    top: -100rem;
+}
 /* Playlist Area */
 
 .unstyled-list {
@@ -152,6 +159,11 @@ position: absolute;
     align-items: center;
     padding: 0.5rem;
     border-top: 0.025em solid var(--color-primary);
+}
+
+.playlist-item.active {
+    background-color: orangered;
+    color: black;
 }
 
 .unstyled-list li:last-child {
@@ -208,10 +220,6 @@ position: absolute;
     .playlist-item {
         font-size: 2rem;
         gap: 1.5rem;
-    }
-    .playlist-item.active {
-        background-color: orangered;
-        color: black;
     }
 
     .playlist-item .thumbnail {
