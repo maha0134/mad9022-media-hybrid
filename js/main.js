@@ -5,15 +5,28 @@ let player=document.getElementById('player');
 const PLAYER= {
     
     init: ()=>{
-        PLAYER.buildPlaylist();
         PLAYER.addListeners();
+        PLAYER.buildPlaylist();
+    },
 
+    addListeners: ()=>{
+        let btnPlay = document.getElementById('btnPlay');
+        btnPlay.addEventListener('click',PLAYER.btnPlay);
+        let btnPause = document.getElementById('btnPause');
+        btnPause.addEventListener('click',PLAYER.btnPause);
+        let btnStop = document.getElementById('btnStop');
+        btnStop.addEventListener('click',PLAYER.btnStop);
+        player.addEventListener('ended', PLAYER.playNextTrack);
+        player.addEventListener('play', PLAYER.startAnimations);
+        player.addEventListener('durationchange', PLAYER.updateTotalTime);
+        player.addEventListener('timeupdate', PLAYER.updateCurrentTime);
     },
 
     buildPlaylist: ()=> {
         let playlistArea = document.getElementById("playlist-area");
         let ul = document.createElement("ul");
         ul.className="unstyled-list";
+        
         songs.forEach(song => {
             let li = document.createElement("li");
             li.classList.add("playlist-item");
@@ -31,33 +44,25 @@ const PLAYER= {
             ul.append(li);
         })
         playlistArea.append(ul);
+        PLAYER.albumArt();
     },
-    
-    addListeners: ()=>{
-        let btnPlay = document.getElementById('btnPlay');
-        btnPlay.addEventListener('click',PLAYER.btnPlay);
-        let btnPause = document.getElementById('btnPause');
-        btnPause.addEventListener('click',PLAYER.btnPause);
-        let btnStop = document.getElementById('btnStop');
-        btnStop.addEventListener('click',PLAYER.btnStop);
 
-        player.addEventListener('ended', PLAYER.playNextTrack);
-        player.addEventListener('play', PLAYER.startAnimations);
-        player.addEventListener('durationchange', PLAYER.updateTotalTime);
-        player.addEventListener('timeupdate', PLAYER.updateCurrentTime);
+    albumArt: ()=> {
+        let imgWrapper = document.querySelector('.img-wrapper');
+        let albumArt = document.createElement('img');
+        albumArt.src = songs[currentSong].img;
+        albumArt.alt = `${songs[currentSong].title} album art`;
+        imgWrapper.append(albumArt);
     },
 
     btnPlay: (ev)=> {
         let clickedButton = ev.currentTarget;
         document.querySelector('.hidden').classList.remove('hidden');
         clickedButton.classList.add('hidden');
-        
-        if(player.paused) { //if player was paused
-            player.play();
-        } else {
+        if(!player.src) { //if play button pressed on page load
             player.src = songs[currentSong].src;
-            player.play();
-        }
+        } 
+        player.play();
     },
 
     btnPause:(ev)=> {
@@ -78,15 +83,19 @@ const PLAYER= {
     },
 
     playNextTrack: ()=>{
-
+        // Code for next button click will go here
     },
 
     startAnimations: ()=> {
+        let playerArea = document.getElementById('player-whole');
+        playerArea.className='is-playing';
+
         // Animation code will go here
     },
 
     updateTotalTime: ()=> {
-
+        let timer = document.getElementById('timer');
+        timer.lastElementChild.innerHTML=Math.round(player.duration/60*100)/100;
     },
 
     updateCurrentTime: ()=> {

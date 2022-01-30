@@ -19,20 +19,22 @@
     
     <main id="main" class="container-outer">
         <section class="player-area container" id="player-area">
-            <div id="player-whole" class="is-playing">
+            <div id="player-whole" class="paused">
                 <div id="visual">
-                    <div class="img-wrapper"><img src="./media/biology.png" alt="biology music" /></div>
+                    <div class="img-wrapper">
+                        <!-- album art goes here -->
+                    </div>
                     <div id="audio-animation" class="audio-animation">
                         Animation block
                     </div>
-                    <audio id="player" src="./media/biology.mp3"></audio>
+                    <audio id="player"></audio>
                 </div>
                 <div id="trackProgress" class="progress-bar">
                     <div class="tracker"></div>
                 </div>
                     <div class="timer" id="timer">
                         <time datetime="00:00">00:00</time>
-                        <time datetime="00:00">00:00</time>
+                        <time datetime="00:00"></time>
                     </div>
                 <div id="controls" class="controls">
                     <button id="btnSkip" class="buttons">
