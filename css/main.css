@@ -178,9 +178,20 @@ position: absolute;
 }
 
 .detail {
-    margin: 0.25rem;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
+
+.detail p {
+    margin: 0.125rem;
+}
+
+.detail .artist {
+    font-size: 1.3rem;
+}
+
+
 
 /* Tablet View */
 @media only screen and (min-width:40em) {
@@ -225,6 +236,10 @@ position: absolute;
     .playlist-item .thumbnail {
         width: 4rem;
         height: 4rem;
+    }
+
+    .detail .artist {
+        font-size: 1.6rem;
     }
 
     .img-wrapper {

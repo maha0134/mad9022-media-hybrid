@@ -7,6 +7,7 @@ const PLAYER= {
     init: ()=>{
         PLAYER.addListeners();
         PLAYER.buildPlaylist();
+        player.src = songs[currentSong].src; //load the song
     },
 
     addListeners: ()=>{
@@ -35,12 +36,17 @@ const PLAYER= {
             let img = document.createElement("img");
             img.src=song.img;
             img.alt="cover image";
-            let p = document.createElement("p");
-            p.classList.add("detail");
-            p.textContent=`${song.title} by ${song.artist}`;
+            let div = document.createElement('div');
+            div.className='detail';
+            let track = document.createElement("p");
+            track.classList.add("song");
+            track.textContent=song.title;
+            let artist = document.createElement("p");
+            artist.classList.add("artist");
+            artist.textContent=song.artist;
+            div.append(track, artist);
             span.append(img);
-            li.append(span);
-            li.append(p);
+            li.append(span,div);
             ul.append(li);
         })
         playlistArea.append(ul);
@@ -59,9 +65,6 @@ const PLAYER= {
         let clickedButton = ev.currentTarget;
         document.querySelector('.hidden').classList.remove('hidden');
         clickedButton.classList.add('hidden');
-        if(!player.src) { //if play button pressed on page load
-            player.src = songs[currentSong].src;
-        } 
         player.play();
     },
 
@@ -89,17 +92,23 @@ const PLAYER= {
     startAnimations: ()=> {
         let playerArea = document.getElementById('player-whole');
         playerArea.className='is-playing';
-
+        let playlist = document.getElementById('playlist-area');
+        let listSongs = Array.from(playlist.querySelectorAll('.song')); //fetch all the list items with class of song inside them
+        let activeSong = listSongs.filter(element=> element.innerHTML===songs[currentSong].title); //find the currently playing song's element
+        activeSong[0].parentElement.parentElement.classList.add('active');  //add the active class to the element playlist item
         // Animation code will go here
     },
 
     updateTotalTime: ()=> {
         let timer = document.getElementById('timer');
-        timer.lastElementChild.innerHTML=Math.round(player.duration/60*100)/100;
+        let duration = Math.round(player.duration); //turn total duration(in seconds) into an integer
+        let minutes=Math.floor(duration/60).toString().padStart(2,'0'); //minutes part padded with a zero
+        let seconds =Math.floor(duration%60); //seconds part
+        timer.lastElementChild.innerHTML=`${minutes}:${seconds}`;
     },
 
     updateCurrentTime: ()=> {
-
+        // code to move the current time as per track playback status
     },
 
 }
