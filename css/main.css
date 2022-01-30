@@ -113,11 +113,12 @@ position: absolute;
 }
 
 .controls {
-    padding:0 1rem;
+    padding:0 0.5rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
     justify-content:center;
+    position: relative;
 }
 
 /* Material Icons */
@@ -127,14 +128,18 @@ position: absolute;
 
 /* buttons */
 .buttons {
-    padding: 0.5em;
     margin: 0.125rem;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 5px;
-    box-shadow: 4px 4px 4px var(--color-primary);
     border: 0.125em var(--color-primary) solid;
     background-color: black;
+}
+
+.buttons.hidden {
+    position: absolute;
+    top: -100rem;
+    opacity: 0;
 }
 /* Playlist Area */
 
@@ -171,8 +176,18 @@ position: absolute;
 }
 
 .detail {
-    margin: 0.25rem;
+    /* font-size: 1rem; */
+    display: flex;
+    flex-direction: column;
     text-align: left;
+}
+
+.detail p {
+    margin: 0.125rem;
+}
+
+.detail .artist {
+    font-size: 1.2rem;
 }
 
 /* Tablet View */
@@ -215,6 +230,10 @@ position: absolute;
         gap: 1.5rem;
     }
 
+    .detail .artist {
+        font-size: 1.5rem;
+    }
+
     .playlist-item .thumbnail {
         width: 4rem;
         height: 4rem;
@@ -227,6 +246,7 @@ position: absolute;
 
     .controls {
         gap: 1.5rem;
+        padding: 0 1rem;
     }
     
     .material-icons.md-36 {
@@ -236,6 +256,7 @@ position: absolute;
     .buttons {
         width: 3.5rem;
         height: 3.5rem;
+        box-shadow: 4px 4px 4px var(--color-primary);
     }
 }
 
