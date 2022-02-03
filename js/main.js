@@ -107,30 +107,16 @@ const PLAYER= {
 
     btnPlay: ()=> {
         PLAYER.player.play();
-        PLAYER.togglePlayPause();
     },
 
     btnPause:()=> {
         PLAYER.player.pause();
-        PLAYER.togglePlayPause();
         PLAYER.stopAnimations();
-    },
-
-    togglePlayPause: ()=>{
-        let hiddenButton = document.querySelector('.hidden');
-        hiddenButton.classList.remove('hidden');
-        let id = hiddenButton.getAttribute('id');
-        if(id ==='btnPlay') {
-            document.getElementById('btnPause').classList.add('hidden');
-        }else {
-            document.getElementById('btnPlay').classList.add('hidden');
-        }
     },
 
     btnStop:()=>{
         PLAYER.player.pause();
         PLAYER.player.currentTime = 0;
-        PLAYER.togglePlayPause();
         PLAYER.stopAnimations();
     },
 
@@ -141,30 +127,27 @@ const PLAYER= {
             document.querySelector('.active').classList.remove('active');
             clickedSong.classList.add('active');
             currentSong=index;
-            let playerArea = document.getElementById('player-whole');
-            if(playerArea.className==='paused'){
-                PLAYER.togglePlayPause();
-            }
             PLAYER.loadSong();
         }
     },
 
     playNextTrack: ()=>{
         // Code for next button click will go here
+        //increment current song
+        //call load song
     },
 
     startAnimations: ()=> {
         let playerArea = document.getElementById('player-whole');
         playerArea.className='is-playing';
 
-
-        // Animation code will go here
+        // Add class name that will begin animation
     },
 
     stopAnimations:()=>{
         let playerArea = document.getElementById('player-whole');
         playerArea.className='paused';
-        //code to stop the animations shall go here
+        //remove class name to stop animation
     },
 
     updateTotalTime: ()=> {
