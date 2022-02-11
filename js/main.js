@@ -36,18 +36,31 @@ const PLAYER= {
     //to choose which function to call based on which button was clicked
     routing: (ev)=> {
         let clickedButton = ev.target.closest('.buttons');
-        switch(clickedButton.id) {
-            case "btnPlay":
-            PLAYER.btnPlay();
-            break;
-            
-            case "btnPause":
-            PLAYER.btnPause();
-            break;
-            
-            case "btnStop":
-            PLAYER.btnStop();
-            break;
+        if(clickedButton) {
+            switch(clickedButton.id) {
+                case "btnPlay":
+                    PLAYER.btnPlay();
+                    break;
+                
+                case "btnPause":
+                    PLAYER.btnPause();
+                    break;
+                
+                case "btnStop":
+                    PLAYER.btnStop();
+                    break;
+    
+                case "btnSkip":
+                    PLAYER.playPreviousTrack();
+                    break;
+    
+                case "btnNext":
+                    PLAYER.playNextTrack();
+                    break;
+                
+                default:
+                    break;
+            }
         }
     },
     //builds the whole playlist from data in the songs file
@@ -131,10 +144,26 @@ const PLAYER= {
         }
     },
 
+    playPreviousTrack:()=>{
+        if(currentSong>0) {
+            currentSong=currentSong-1;
+        } else{
+            currentSong=songs.length-1;
+        }
+        PLAYER.changeHighlightedSong();
+        PLAYER.loadSong();
+    },
+
     playNextTrack: ()=>{
         // Code for next button click will go here
         //increment current song
         //call load song
+    },
+
+    changeHighlightedSong:()=>{
+        document.querySelector('.active').classList.remove('active');
+        let listedSongs = document.querySelectorAll('.playlist-item');
+        listedSongs[currentSong].classList.add('active');
     },
 
     startAnimations: ()=> {
