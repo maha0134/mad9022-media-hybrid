@@ -152,24 +152,32 @@ const PLAYER= {
     },
 
     playPreviousTrack:()=>{
+        PLAYER.decrementSong();
+        PLAYER.changeHighlightedSong();
+        PLAYER.loadSong();
+    },
+
+    decrementSong:()=>{
         if(currentSong>0) {
             currentSong=currentSong-1;
         } else{
             currentSong=songs.length-1;
         }
+    },
+
+    playNextTrack: ()=>{
+        PLAYER.incrementSong();
+
         PLAYER.changeHighlightedSong();
         PLAYER.loadSong();
     },
 
-    playNextTrack: ()=>{
+    incrementSong:()=>{
         if(currentSong===songs.length-1){
             currentSong=0;
         } else {
             currentSong=currentSong+1;
         }
-
-        PLAYER.changeHighlightedSong();
-        PLAYER.loadSong();
     },
 
     replayTenSeconds:()=> {
