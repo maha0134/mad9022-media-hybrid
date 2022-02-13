@@ -24,10 +24,10 @@ const PLAYER= {
 
     loadSong:(firstLoad)=>{
         if(firstLoad) {
-            PLAYER.player.src = songs[currentSong].src; //load the song
+            PLAYER.player.src = songs[currentSong].src; //load the song but don't play
             PLAYER.albumArt();
         }else {
-            PLAYER.player.src = songs[currentSong].src; //load the song
+            PLAYER.player.src = songs[currentSong].src; //load the song and play
             PLAYER.albumArt();
             PLAYER.player.play();
         }
@@ -36,6 +36,7 @@ const PLAYER= {
     //to choose which function to call based on which button was clicked
     routing: (ev)=> {
         let clickedButton = ev.target.closest('.buttons');
+        
         if(clickedButton) {
             switch(clickedButton.id) {
                 case "btnPlay":
@@ -153,8 +154,8 @@ const PLAYER= {
 
     playPreviousTrack:()=>{
         PLAYER.decrementSong();
-        PLAYER.changeHighlightedSong();
         PLAYER.loadSong();
+        PLAYER.changeHighlightedSong();
     },
 
     decrementSong:()=>{
@@ -164,12 +165,11 @@ const PLAYER= {
             currentSong=songs.length-1;
         }
     },
-
+//this gets triggered when a track ends or if the user clicks the next song button
     playNextTrack: ()=>{
         PLAYER.incrementSong();
-
-        PLAYER.changeHighlightedSong();
         PLAYER.loadSong();
+        PLAYER.changeHighlightedSong();
     },
 
     incrementSong:()=>{
@@ -181,21 +181,23 @@ const PLAYER= {
     },
 
     replayTenSeconds:()=> {
-        if(PLAYER.player.currentTime <=10.00){
+        //if time is less than 10 seconds, it should restart at 0:00sec
+        if(PLAYER.player.currentTime <= 10.00){
             PLAYER.player.currentTime = 0.00;
         } else {
-            PLAYER.player.currentTime-=10.00;
+            PLAYER.player.currentTime -= 10.00;
         }
     },
 
     forwardTenSeconds:()=> {
-        if(PLAYER.player.duration-PLAYER.player.currentTime <=10.00){
+        //if the song is in the last 10 seconds of playback, then it should end
+        if(PLAYER.player.duration - PLAYER.player.currentTime <= 10.00){
             PLAYER.player.currentTime = PLAYER.player.duration;
         } else {
-            PLAYER.player.currentTime+=10.00;
+            PLAYER.player.currentTime += 10.00;
         }
     },
-
+//changes the highlighted song in the playlist as per the currentSong variable
     changeHighlightedSong:()=>{
         document.querySelector('.active').classList.remove('active');
         let listedSongs = document.querySelectorAll('.playlist-item');
@@ -225,6 +227,8 @@ const PLAYER= {
 
     updateCurrentTime: ()=> {
         // code to move the current time as per track playback status
+        //similar to the updateTotalTime function but getting triggered with time update constantly
+        //timer's first child's innerHTML will show the current time
     },
 
 }
