@@ -58,6 +58,14 @@ const PLAYER= {
                     PLAYER.playNextTrack();
                     break;
                 
+                case "btnReplay":
+                    PLAYER.replayTenSeconds();
+                    break;
+
+                case "btnForward":
+                    PLAYER.forwardTenSeconds();
+                    break;
+                    
                 default:
                     break;
             }
@@ -136,10 +144,9 @@ const PLAYER= {
     clickedSong: (ev)=>{
         let clickedSong = ev.target.closest('.playlist-item');
         let index = clickedSong.getAttribute('data-index');
-        if(index !== currentSong.toString()){
-            document.querySelector('.active').classList.remove('active');
-            clickedSong.classList.add('active');
-            currentSong=index;
+        if(parseInt(index) !== currentSong){
+            currentSong=parseInt(index);
+            PLAYER.changeHighlightedSong();
             PLAYER.loadSong();
         }
     },
@@ -155,9 +162,30 @@ const PLAYER= {
     },
 
     playNextTrack: ()=>{
-        // Code for next button click will go here
-        //increment current song
-        //call load song
+        if(currentSong===songs.length-1){
+            currentSong=0;
+        } else {
+            currentSong=currentSong+1;
+        }
+
+        PLAYER.changeHighlightedSong();
+        PLAYER.loadSong();
+    },
+
+    replayTenSeconds:()=> {
+        if(PLAYER.player.currentTime <=10.00){
+            PLAYER.player.currentTime = 0.00;
+        } else {
+            PLAYER.player.currentTime-=10.00;
+        }
+    },
+
+    forwardTenSeconds:()=> {
+        if(PLAYER.player.duration-PLAYER.player.currentTime <=10.00){
+            PLAYER.player.currentTime = PLAYER.player.duration;
+        } else {
+            PLAYER.player.currentTime+=10.00;
+        }
     },
 
     changeHighlightedSong:()=>{
