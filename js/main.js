@@ -154,6 +154,7 @@ const PLAYER= {
 
     playPreviousTrack:()=>{
         PLAYER.decrementSong();
+        PLAYER.btnStop();
         PLAYER.loadSong();
         PLAYER.changeHighlightedSong();
     },
@@ -168,6 +169,7 @@ const PLAYER= {
 //this gets triggered when a track ends or if the user clicks the next song button
     playNextTrack: ()=>{
         PLAYER.incrementSong();
+        PLAYER.btnStop();
         PLAYER.loadSong();
         PLAYER.changeHighlightedSong();
     },
