@@ -183,21 +183,33 @@ const PLAYER= {
     },
 
     replayTenSeconds:()=> {
-        //if time is less than 10 seconds, it should restart at 0:00sec
-        if(PLAYER.player.currentTime <= 10.00){
-            PLAYER.player.currentTime = 0.00;
+        if(!PLAYER.player.paused) { //check if the player is playing
+        
+            //if time is less than 10 seconds, it should restart at 0:00sec
+            if(PLAYER.player.currentTime <= 10.00){
+                PLAYER.player.currentTime = 0.00;
+            } else {
+                PLAYER.player.currentTime -= 10.00;
+            }
         } else {
-            PLAYER.player.currentTime -= 10.00;
+            PLAYER.player.currentTime = 0.00;
         }
     },
 
     forwardTenSeconds:()=> {
-        //if the song is in the last 10 seconds of playback, then it should end
-        if(PLAYER.player.duration - PLAYER.player.currentTime <= 10.00){
-            PLAYER.player.currentTime = PLAYER.player.duration;
+        
+        if(!PLAYER.player.paused) { //check if the player is playing
+            
+            //if the song is in the last 10 seconds of playback, then it should end
+            if(PLAYER.player.duration - PLAYER.player.currentTime <= 10.00){
+                PLAYER.player.currentTime = PLAYER.player.duration;
+            } else {
+                PLAYER.player.currentTime += 10.00;
+            }
         } else {
-            PLAYER.player.currentTime += 10.00;
+            PLAYER.player.currentTime = PLAYER.player.duration;
         }
+
     },
 //changes the highlighted song in the playlist as per the currentSong variable
     changeHighlightedSong:()=>{
