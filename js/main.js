@@ -74,9 +74,8 @@ const PLAYER= {
     },
     //builds the whole playlist from data in the songs file
     buildPlaylist: ()=> {
-        let playlistArea = document.getElementById("playlist-area");
-        let ul = document.createElement("ul");
-        ul.className="unstyled-list";
+        let ul = document.querySelector(".unstyled-list");
+        let df = new DocumentFragment();
         songs.forEach((song,index) => {
             let li = document.createElement("li");
             li.classList.add("playlist-item");
@@ -106,9 +105,9 @@ const PLAYER= {
             div.append(track, artist);
             span.append(img);
             li.append(span,div);
-            ul.append(li);
+            df.append(li);
         });
-        playlistArea.append(ul);
+        ul.append(df);
     },
 
     albumArt: ()=> {

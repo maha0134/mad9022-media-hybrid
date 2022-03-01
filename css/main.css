@@ -143,6 +143,7 @@ position: absolute;
     background-color: var(--color-primary);
     box-shadow: none;
     transform: translateY(0.125rem);
+    cursor: pointer;
 }
 
 .paused .buttons[id="btnPause"],
@@ -171,6 +172,11 @@ position: absolute;
 .playlist-item.active {
     background-color: orangered;
     color: black;
+}
+
+.playlist-item:hover,
+.playlist-item.focus {
+    cursor: pointer;
 }
 
 .unstyled-list li:last-child {
