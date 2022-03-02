@@ -144,11 +144,9 @@ const PLAYER= {
     clickedSong: (ev)=>{
         let clickedSong = ev.target.closest('.playlist-item');
         let index = clickedSong.getAttribute('data-index');
-        if(parseInt(index) !== currentSong){
-            currentSong=parseInt(index);
-            PLAYER.changeHighlightedSong();
-            PLAYER.loadSong();
-        }
+        currentSong=parseInt(index);
+        PLAYER.changeHighlightedSong();
+        PLAYER.loadSong();
     },
 
     playPreviousTrack:()=>{
@@ -232,17 +230,35 @@ const PLAYER= {
 
     updateTotalTime: ()=> {
         let timer = document.getElementById('timer');
-        let duration = Math.round(PLAYER.player.duration); //turn total duration(in seconds) into an integer
-        let minutes=Math.floor(duration/60).toString().padStart(2,'0'); //minutes part padded with a zero
-        let seconds =Math.floor(duration%60).toString().padEnd(2,'0'); //seconds part
-        timer.lastElementChild.innerHTML=`${minutes}:${seconds}`;
+        let totalTime = PLAYER.convertIntoSeconds(Math.round(PLAYER.player.duration));//Math.round -- to get total seconds as an integer
+        timer.lastElementChild.innerHTML=totalTime;
+        PLAYER.updateCurrentTime(true);
     },
 
     updateCurrentTime: ()=> {
-        // code to move the current time as per track playback status
-        //similar to the updateTotalTime function but getting triggered with time update constantly
-        //timer's first child's innerHTML will show the current time
+        let progress = document.querySelector('progress');
+        let timer = document.getElementById('timer');
+        if(PLAYER.player.currentTime === 0) { //triggered by duration change
+            progress.value=0;
+            timer.firstElementChild.innerHTML=`00:00`;
+        } else {
+            setTimeout(()=>{
+                PLAYER.setCurrentTime(timer,progress)
+            },500);
+        }
     },
+
+    setCurrentTime:(timer,progress)=>{
+        progress.value = PLAYER.player.currentTime/PLAYER.player.duration * 100;
+        let currentTime = PLAYER.convertIntoSeconds(PLAYER.player.currentTime);
+        timer.firstElementChild.innerHTML=currentTime;
+    },
+
+    convertIntoSeconds:(duration)=> {
+        let minutes=Math.floor(duration/60).toString().padStart(2,'0'); //minutes part padded with a zero
+        let seconds =Math.floor(duration%60).toString().padStart(2,'0'); //seconds part
+        return `${minutes}:${seconds}`;
+    }
 
 }
 
