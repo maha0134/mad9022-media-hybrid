@@ -113,7 +113,7 @@ progress::-webkit-progress-value {
 }
 
 .controls {
-    padding:0 1rem;
+    padding:0 0.5rem;
     display: flex;
     flex-wrap: nowrap;
     gap: 1rem;
@@ -128,15 +128,14 @@ progress::-webkit-progress-value {
 
 /* buttons */
 .buttons {
-    padding: 0.5em;
     margin: 0.125rem;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 5px;
-    box-shadow: 4px 4px 4px var(--color-primary);
     border: 0.125em var(--color-primary) solid;
     background-color: black;
 }
+
 
 .buttons:hover,
 .buttons:focus-visible {
@@ -150,6 +149,7 @@ progress::-webkit-progress-value {
 .is-playing .buttons[id="btnPlay"] {
     display: none;
     transform: translateY(-100rem);
+
 }
 /* Playlist Area */
 
@@ -173,6 +173,7 @@ progress::-webkit-progress-value {
     background-color: orangered;
     color: black;
 }
+
 
 .playlist-item:hover,
 .playlist-item.focus {
@@ -203,8 +204,6 @@ progress::-webkit-progress-value {
 .detail .artist {
     font-size: 1.3rem;
 }
-
-
 
 /* Tablet View */
 @media only screen and (min-width:40em) {
@@ -262,6 +261,7 @@ progress::-webkit-progress-value {
 
     .controls {
         gap: 1.5rem;
+        padding: 0 1rem;
     }
     
     .material-icons.md-36 {
@@ -271,6 +271,7 @@ progress::-webkit-progress-value {
     .buttons {
         width: 3.5rem;
         height: 3.5rem;
+        box-shadow: 4px 4px 4px var(--color-primary);
     }
 }
 
