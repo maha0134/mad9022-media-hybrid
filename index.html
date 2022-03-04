@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Media Player</title>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,20 +19,25 @@
     
     <main id="main" class="container-outer">
         <section class="player-area container" id="player-area">
-            <div id="player" class="is-playing">
+            <div id="player-whole" class="paused">
                 <div id="visual">
-                    <div class="img-wrapper"><img src="./media/biology.png" alt="biology music" /></div>
+                    <div class="img-wrapper">
+                        <!-- album art goes here -->
+                    </div>
                     <div id="audio-animation" class="audio-animation">
                         Animation block
                     </div>
-                    <audio id="player" src="./media/biology.mp3"></audio>
+                    <audio id="player"></audio>
                 </div>
-                <div id="trackProgress" class="progress-bar">
+                <!-- <div id="trackProgress" class="progress-bar">
                     <div class="tracker"></div>
-                </div>
+                </div> -->
+                
+                    <progress max="100" value="10"></progress>
+                
                     <div class="timer" id="timer">
-                        <time datetime="00:00">00:00</time>
-                        <time datetime="00:00">00:00</time>
+                        <time datetime="00:00"></time>
+                        <time datetime="00:00"></time>
                     </div>
                 <div id="controls" class="controls">
                     <button id="btnSkip" class="buttons">
@@ -63,74 +68,11 @@
         <section class="playlist-area container" id="playlist-area" >
             <h2>Recommended for you</h2>
             <ul class="unstyled-list">
-                <li class="playlist-item active">
-                    <span class="thumbnail">
-                        <img src="./media/biology.png" alt="biology song thumbnail">
-                    </span>
-                        <div class="detail">
-                            <p class="song">Biology</p>
-                            <p class="artist">Gameboy Tetris</p>
-                        </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/cute.png" alt="cute song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">Cute</p>
-                        <p class="artist">BenSound.com</p>
-                    </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/electric.png" alt="electric song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">Electric</p>
-                        <p class="artist">Vaance & Deerock</p>
-                    </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/hateyou.png" alt="hate you song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">Hate you</p>
-                        <p class="artist">Poylow & BAUWZ</p>
-                    </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/intothewild.png" alt="into the wild song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">Into the Wild</p>
-                        <p class="artist">Zack Merci X Arcana</p>
-                    </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/onon.png" alt="on on song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">On &amp; On</p>
-                        <p class="artist">Cartoon</p>
-                    </div>
-                </li>
-                <li class="playlist-item">
-                    <span class="thumbnail">
-                        <img src="./media/pushgas.png" alt="push gas song thumbnail">
-                    </span>
-                    <div class="detail">
-                        <p class="song">Push Gas</p>
-                        <p class="artist">M.I.M.E x The LJ</p>
-                    </div>
-                </li>
-                
+                <!-- Playlist goes here -->
             </ul>
         </section>
     </main>
     
-    
+    <script src="./js/main.js" type="module"></script>
 </body>
 </html>

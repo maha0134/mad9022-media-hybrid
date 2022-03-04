@@ -88,21 +88,21 @@ header {
     font-size: 1.3rem;
     margin: 2rem auto;
 }
-
-.progress-bar {
+/* Progress bar styling reference https://css-tricks.com/html5-progress-element/ */
+progress {
     width: 100%;
-    height: 0.5rem;
-    background-color: var(--color-primary);
-    position: relative;
+    height: 1.5rem;
+    appearance: none;
+}
+progress::-webkit-progress-bar {
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    background-color: white;
 }
 
-.progress-bar .tracker {
-width: 1.25rem;
-border-radius: 50%;
-height: 1.25rem;
-margin-top: -0.35rem;
-background-color: white;
-position: absolute;
+progress::-webkit-progress-value {
+    border-radius: 15px;
+    background-color: var(--color-primary);
 }
 
 .timer {
@@ -116,7 +116,7 @@ position: absolute;
     padding:0 0.5rem;
     display: flex;
     flex-wrap: nowrap;
-    gap: 0.25rem;
+    gap: 1rem;
     justify-content:center;
     position: relative;
 }
@@ -136,10 +136,20 @@ position: absolute;
     background-color: black;
 }
 
-.buttons.hidden {
-    position: absolute;
-    top: -100rem;
-    opacity: 0;
+
+.buttons:hover,
+.buttons:focus-visible {
+    background-color: var(--color-primary);
+    box-shadow: none;
+    transform: translateY(0.125rem);
+    cursor: pointer;
+}
+
+.paused .buttons[id="btnPause"],
+.is-playing .buttons[id="btnPlay"] {
+    display: none;
+    transform: translateY(-100rem);
+
 }
 /* Playlist Area */
 
@@ -164,6 +174,12 @@ position: absolute;
     color: black;
 }
 
+
+.playlist-item:hover,
+.playlist-item.focus {
+    cursor: pointer;
+}
+
 .unstyled-list li:last-child {
     border-bottom: 0.025em solid var(--color-primary);
     margin-bottom: 2rem;
@@ -176,10 +192,9 @@ position: absolute;
 }
 
 .detail {
-    /* font-size: 1rem; */
+    text-align: left;
     display: flex;
     flex-direction: column;
-    text-align: left;
 }
 
 .detail p {
@@ -187,7 +202,7 @@ position: absolute;
 }
 
 .detail .artist {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 /* Tablet View */
@@ -230,13 +245,13 @@ position: absolute;
         gap: 1.5rem;
     }
 
-    .detail .artist {
-        font-size: 1.5rem;
-    }
-
     .playlist-item .thumbnail {
         width: 4rem;
         height: 4rem;
+    }
+
+    .detail .artist {
+        font-size: 1.6rem;
     }
 
     .img-wrapper {
