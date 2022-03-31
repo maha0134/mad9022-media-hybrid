@@ -72,9 +72,25 @@ header {
 }
 
 .img-wrapper {
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   width: 15rem;
   height: 15rem;
+}
+/* Animate */
+.is-playing .img-wrapper {
+  animation: bounce 1s 0.7s linear infinite;
+  transform: scale(1);
+}
+
+@keyframes bounce {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.025);
+  }
+
 }
 
 .img-wrapper img {
