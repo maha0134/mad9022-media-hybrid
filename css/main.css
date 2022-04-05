@@ -103,10 +103,11 @@ header {
   50% {
     transform: scale(1.025);
   }
+
   100% {
     transform: scale(1);
   }
-}
+
 
 .dots {
   display: flex;
@@ -235,6 +236,17 @@ progress::-webkit-progress-value {
   box-shadow: none;
   transform: translateY(0.125rem);
   cursor: pointer;
+}
+
+/* Mute button placement */
+#visual {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+#btnMute {
+  background-color: black;
 }
 
 .paused .buttons[id="btnPause"],
